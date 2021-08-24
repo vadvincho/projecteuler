@@ -6,34 +6,37 @@ public class Task14 {
     private long[] results = new long[BILLION];
     private static final int BILLION = 1000000;
 
-    private long getCollatz(long n) {
-        if (n == 1) {
+    //    method generates Collatz sequence that starts with beginNumber and count iterations
+    private long getCollatzChain(long beginNumber) {
+        if (beginNumber == 1) {
             return 1;
-        } else if (n % 2 == 0) {
-            return checkingResults(n / 2) + 1;
+        } else if (beginNumber % 2 == 0) {
+            return checkingResults(beginNumber / 2) + 1;
         } else {
-            return checkingResults(3 * n + 1) + 1;
+            return checkingResults(3 * beginNumber + 1) + 1;
         }
     }
 
+    //  checking previously stored values
     private long checkingResults(long next) {
         if (next >= BILLION) {
-            return getCollatz(next);
+            return getCollatzChain(next);
         }
         if (results[(int) next] == 0) {
-            results[(int) next] = getCollatz(next);
+            results[(int) next] = getCollatzChain(next);
         }
         return results[(int) next];
     }
 
-    public long getCountCollatz(int n) {
-        long count = 0;
+    //    the method returns the value for which the Collatz sequence is maximum in the range from 0 to limit
+    public long getCountCollatzChain(int limit) {
+        long countMax = 0;
         long value = 0;
-        for (int i = 1; i <= n; i++) {
-            long c = getCollatz(i);
-            if (c > count) {
+        for (int i = 1; i <= limit; i++) {
+            long countI = getCollatzChain(i);
+            if (countI > countMax) {
                 value = i;
-                count = c;
+                countMax = countI;
             }
         }
         return value;
