@@ -8,9 +8,10 @@ import java.util.Arrays;
 public class Task10 {
     private boolean[] primes;
 
+    //  method returns the sum of primes below limit
     public long sumOfAllPrimes(int limit) {
         long sum = 0;
-        fillSieve(limit);
+        fillSieveOfEratosthenes(limit);
         for (int i = 0; i < primes.length; i++) {
             if (primes[i]) {
                 sum += i;
@@ -19,7 +20,8 @@ public class Task10 {
         return sum;
     }
 
-    private void fillSieve(int n) {
+    //  method for finding all primes up to N according to the "Sieve of Eratosthenes" algorithm
+    private void fillSieveOfEratosthenes(int n) {
         primes = new boolean[n + 1];
         Arrays.fill(primes, true);
         primes[0] = false;
