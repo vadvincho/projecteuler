@@ -5,10 +5,12 @@ package com.vadzimvincho.task4;
 //Find the largest palindrome made from the product of two 3-digit numbers.
 
 public class Task4 {
-    public int largestPalindrome(int begin, int end) {
+    //    method find the largest palindrome made from the product of two numbers
+    //    in the range from beginNumber to endNumber
+    public int getLargestPalindrome(int beginNumber, int endNumber) {
         int largestPalindrome = 0;
-        for (int i = begin; i <= end; i++) {
-            for (int j = begin; j <= end; j++) {
+        for (int i = beginNumber; i <= endNumber; i++) {
+            for (int j = beginNumber; j <= endNumber; j++) {
                 int temp = i * j;
                 if (isPalindrome(temp) && temp > largestPalindrome) {
                     largestPalindrome = temp;
@@ -18,13 +20,14 @@ public class Task4 {
         return largestPalindrome;
     }
 
-    private boolean isPalindrome(int value) {
-        int temp = value;
+    //    method determines whether number is palindrome
+    private boolean isPalindrome(int number) {
+        int temp = number;
         int revers = 0;
         while (temp != 0) {
             revers = temp % 10 + (revers * 10);
             temp = temp / 10;
         }
-        return value == revers;
+        return number == revers;
     }
 }
