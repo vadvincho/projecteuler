@@ -5,6 +5,7 @@ package com.vadzimvicnho.task17;
 //If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
 
 public class Task17 {
+    //    constants
     private static String[] ONES_NUMBERS = {
             "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
     private static String[] ONE_TEN_NUMBERS = {
@@ -14,34 +15,36 @@ public class Task17 {
     private static String HUNDRED = "hundred";
     private static String THOUSAND = "thousand";
 
-    public int getNumberLetterSum(int n) {
+    //  method returns the sum of letters from 1 to the limit
+    public int getNumberLetterSum(int limit) {
         int sum = 0;
-        for (int i = 1; i <= 1000; i++) {
+        for (int i = 1; i <= limit; i++) {
             sum += numberToString(i).length();
         }
         return sum;
     }
 
-    private String numberToString(int n) {
+    //  method converts the digital value of number to string
+    private String numberToString(int number) {
         String string = null;
-        if (0 <= n && n < 10) {
-            string = ONES_NUMBERS[n];
-        } else if (10 <= n && n < 20) {
-            string = ONE_TEN_NUMBERS[n % 10];
-        } else if (20 <= n && n < 100) {
-            string = TENS_NUMBERS[n / 10];
-            if (n % 10 != 0) {
-                string += ONES_NUMBERS[n % 10];
+        if (0 <= number && number < 10) {
+            string = ONES_NUMBERS[number];
+        } else if (10 <= number && number < 20) {
+            string = ONE_TEN_NUMBERS[number % 10];
+        } else if (20 <= number && number < 100) {
+            string = TENS_NUMBERS[number / 10];
+            if (number % 10 != 0) {
+                string += ONES_NUMBERS[number % 10];
             }
-        } else if (100 <= n && n < 1000) {
-            string = ONES_NUMBERS[n / 100] + HUNDRED;
-            if (n % 100 != 0) {
-                string += "and" + numberToString(n % 100);
+        } else if (100 <= number && number < 1000) {
+            string = ONES_NUMBERS[number / 100] + HUNDRED;
+            if (number % 100 != 0) {
+                string += "and" + numberToString(number % 100);
             }
-        } else if (1000 <= n && n < 1000000) {
-            string = numberToString(n / 1000) + THOUSAND;
-            if (n % 1000 != 0) {
-                string += numberToString(n % 1000);
+        } else if (1000 <= number && number < 1000000) {
+            string = numberToString(number / 1000) + THOUSAND;
+            if (number % 1000 != 0) {
+                string += numberToString(number % 1000);
             }
         }
         return string;
